@@ -28,7 +28,8 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/send-email', formData);
+      // const response = await axios.post('http://localhost:5000/send-email', formData);
+      const response = await axios.post('https://backend-demo-2-156a59c3faa0.herokuapp.com/send-email', formData);
       if (response.status === 200) {
         setStatus('Email sent successfully!');
         setFormData({ name: '', email: '', message: '' });
