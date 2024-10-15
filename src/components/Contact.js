@@ -4,7 +4,8 @@ import axios from 'axios';
 function Contact() {
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
+    fname: '',
+    sname: '',
     email: '',
     message: ''
   });
@@ -32,7 +33,7 @@ function Contact() {
       const response = await axios.post('https://backend-demo-2-156a59c3faa0.herokuapp.com/send-email', formData);
       if (response.status === 200) {
         setStatus('Email sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ fname: '', sname: '', email: '', message: '' });
       }
     } catch (error) {
       setStatus('Failed to send email.');
@@ -47,12 +48,23 @@ function Contact() {
       <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">First Name</label>
           <input
             type="text"
-            name="name"
+            name="fname"
             id="name"
-            value={formData.name}
+            value={formData.fname}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Last Name</label>
+          <input
+            type="text"
+            name="sname"
+            id="name"
+            value={formData.sname}
             onChange={handleChange}
             required
           />
